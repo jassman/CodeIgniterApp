@@ -69,7 +69,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']	= 'spanish';
 
 /*
 |--------------------------------------------------------------------------
@@ -155,6 +155,7 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 |
 */
 $config['allow_get_array']		= TRUE;
+//habilitar clave valor en las url EJEM: jbhkij?hola=4
 $config['enable_query_strings'] = FALSE;
 $config['controller_trigger']	= 'c';
 $config['function_trigger']		= 'm';
@@ -180,6 +181,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
+
 $config['log_threshold'] = 0;
 
 /*
@@ -244,10 +246,17 @@ $config['encryption_key'] = '';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
+//variables de sesion
+
+//Nombre de la variable
 $config['sess_cookie_name']		= 'ci_session';
+//Teimpo de expiracion
 $config['sess_expiration']		= 7200;
+//Se expira al cerrar navegador?
 $config['sess_expire_on_close']	= FALSE;
+//Se encripta¿
 $config['sess_encrypt_cookie']	= FALSE;
+//Usa Base de datos?
 $config['sess_use_database']	= FALSE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
@@ -315,6 +324,8 @@ $config['csrf_expire'] = 7200;
 | by the output class.  Do not 'echo' any values with compression enabled.
 |
 */
+
+//comprime las salidas php para mejor rendimiento (algunos servidores dan problemas)
 $config['compress_output'] = FALSE;
 
 /*
