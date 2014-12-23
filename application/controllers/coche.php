@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class Articulos extends CI_Controller {
+class Coche extends CI_Controller {
 
     /**
      * Index Page for this controller.

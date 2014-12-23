@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "articulos";
+$route['default_controller'] = "mapa";
 $route['404_override'] = '';
 
 
