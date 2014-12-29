@@ -26,5 +26,5 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
+        <div class="container contenido">
             <section class="row">

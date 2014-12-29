@@ -38,10 +38,11 @@
 |
 */
 
-$route['default_controller'] = "mapa";
+$route['default_controller'] = "home";
 $route['404_override'] = '';
 
 $route['coche'] = "coche";
+$route['mapa'] = "mapa";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
 

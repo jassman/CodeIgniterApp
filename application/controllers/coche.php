@@ -16,7 +16,7 @@ class Coche extends CI_Controller {
         //pido los ultimos artículos al modelo
         $ultimosArticulos = $this->Coche_model->muestra_Todos();
         //cargo la vista pasando los datos de configuacion
-        $datos['contenido'] = "home";
+        $datos['contenido'] = "coches_view";
         $datos['rs_articulos'] = $ultimosArticulos;
         
         $this->load->view('plantillas/plantilla', $datos);
