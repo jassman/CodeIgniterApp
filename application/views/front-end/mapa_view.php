@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
 
     <script type="text/javascript">
     function datos_marker(lat, lng, marker)
@@ -11,12 +7,9 @@
      google.maps.event.trigger(marker, 'click');
     }
     </script>
+    <section class="col s8">
     <?=$map['js']?>
-    <title>La librería googlemaps de codeigniter por Biostall.com</title>
-</head>
-<body>
-<?=$map['html']?>
-<section class="contenido">
+    <?=$map['html']?>
     <ul>
         <?php
         foreach($datos as $marker_sidebar)
@@ -27,5 +20,3 @@
         ?>
     </ul>
 </section>
-</body>
-</html>

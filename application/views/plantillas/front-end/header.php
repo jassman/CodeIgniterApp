@@ -3,23 +3,28 @@
     <head>
         <meta charset="utf-8">
         <title>Plantilla - Curso CI</title>
+        <link href="<?php echo base_url(); ?>assets/css/materialize.css" rel="stylesheet" type="text/css"  media="screen,projection">
         <link href="<?php echo base_url(); ?>assets/css/estilos.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript"  src="<?php echo base_url(); ?>assets/js/materialize.js"></script>
         <header>
-            <section class="contenedor">
-                <h1>Curso de CodeIgniter</h1>
-                <p>Plantilla de ejemplo para el curso de CodeIgniter</p>
+            <section class="header">
+                <h1 class="center-on-small-only">PARKEASY</h1>
+                <div class="row">
+                    <h4 class ="col s12 lighten-4 center-on-small-only">Encuentra sitio rapidamente.</h4>
+                </div>
             </section>
         </header>
         <nav>
-            <section class="contenedor">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Nosotros</a></li>
+            <div class="nav-wrapper">
+                <ul id="nav-mobile" class="nav-bar left side-nav">
+                    <li><a class="waves-effect waves-teal" href="sass.html">Perfil</a></li>
+                    <li><a class="waves-effect waves-teal" href="components.html">Encuentra Sitio</a></li>
+                    <li><a class="waves-effect waves-teal" href="javascript.html">Comunidad</a></li>
                 </ul>
-            </section>
+            </div>
         </nav>
-        <section class="contenedor">
+        <div class="container">
+            <section class="row">
