@@ -1,11 +1,5 @@
 
-<html lang="es">
-<head>
-<title>Mi página web</title>
-</head>
-<body>
-<h1>Bienvenido a mi web, LA PORTADA</h1>
-
+<div>
 <?php
 while ($fila = mysql_fetch_array($rs_articulos)){
    echo '<p>';
@@ -19,6 +13,6 @@ while ($fila = mysql_fetch_array($rs_articulos)){
    echo '</p>';
 }
 ?>
-</body>
-</html>
+    </div>
+
 

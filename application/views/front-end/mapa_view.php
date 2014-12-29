@@ -2,36 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <style type="text/css">
-        body{
-            background: #888888
-        }
-        #sidebar{
-            position: absolute;
-            width: 200px;
-            height: 590px;
-            background: #222;
-            color: #fff;
-            margin-left: 600px;
-            margin-top: -600px;
-            border: 5px solid #fff;
-        }
-        ul{
-            padding: 0;
-            text-align: justify;        
-        }
- 
-         li{
-            cursor: pointer;
-            border-top: 1px solid #fff;
-            background: #c3c3c3; 
-            list-style: none;
-            color: #111
-        }
-        li:hover{
-            background: #fefefe;
-        }
-    </style>
+
     <script type="text/javascript">
     function datos_marker(lat, lng, marker)
     {
@@ -45,7 +16,7 @@
 </head>
 <body>
 <?=$map['html']?>
-<div id="sidebar">
+<section class="contenido">
     <ul>
         <?php
         foreach($datos as $marker_sidebar)
@@ -55,6 +26,6 @@
         }
         ?>
     </ul>
-</div>
+</section>
 </body>
 </html>

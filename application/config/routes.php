@@ -41,6 +41,7 @@
 $route['default_controller'] = "mapa";
 $route['404_override'] = '';
 
-
+$route['coche'] = "coche";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
+

@@ -1,21 +1,15 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-class Mapa extends CI_Controller {
-
-     public function __construct()
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Mapa_Original extends CI_Controller{
+    
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('mapa_model');
     }
     
-    public function index() {
-        
-         //creamos la configuración del mapa con un array
+    public function index()
+    {
+        //creamos la configuración del mapa con un array
         $config = array();
         //la zona del mapa que queremos mostrar al cargar el mapa
         //como vemos le podemos pasar la ciudad y el país
@@ -59,34 +53,10 @@ class Mapa extends CI_Controller {
         
         //en $data['datos'tenemos la información de cada marker para
         //poder utilizarlo en el sidebar en nuestra vista mapa_view
-        $data = $this->mapa_model->get_markers();
+        $data['datos'] = $this->mapa_model->get_markers();
         //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
-        $map = $this->googlemaps->create_map();             
-        
-        $datos['contenido'] = "mapa_view";
-        $datos['datos'] = $data;
-        $datos['map'] = $map;
-        $this->load->view('plantillas/plantilla', $datos);
-        
-   }
-   
-   function muestra($id){
-      //cargo el helper de url, con funciones para trabajo con URL del sitio
-      $this->load->helper('url');     
-      //cargo el modelo de artículos
-      $this->load->model('Coche_model');   
-      //pido al modelo el artículo que se desea ver
-      $arrayArticulo = $this->Coche_model->dame_coche($id);     
-      //compruebo si he recibido un artículo
-      if (!$arrayArticulo){
-         //no he recibido ningún artículo
-         //voy a lanzar un error 404 de página no encontrada
-         show_404();
-      }else{
-         //he encontrado el artículo
-         //muestro la vista de la página de mostrar un artículo pasando los datos del array del artículo
-         $this->load->view('muestraCoche', $arrayArticulo);
-      }
-   }
-
+        $data['map'] = $this->googlemaps->create_map();
+        $this->load->view('mapa_view',$data);
+    }
 }
+
