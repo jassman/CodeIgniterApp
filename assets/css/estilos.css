@@ -17,3 +17,28 @@ nav{
 .sidebar{
     background-color:#7986CB;
 }
+
+/*PAGINA PRINCIPAL*/
+
+.portada-inicio{
+    width: 50%; 
+    height: 200px;
+    background-color: green;
+}
+
+.portada-inicio h1{
+    margin:auto;
+    vertical-align:middle;
+}
+
+.inicio{
+    margin: 0 auto;
+    width: 100px;
+    margin-top: 5px;
+}
+
+.contenedor-botones-inicio{
+    margin-top: 20%;
+}
+
+/*FIN PAGINA PRINCIPAL*/
