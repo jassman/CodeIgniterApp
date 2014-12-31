@@ -22,22 +22,22 @@
                         <a class="waves-effect waves-light btn-large inicio modal-activar" href="#modal_registrar">Registrarse</a>
                         <!-- Estructura del Modal -->
                         <div id="modal_registrar" class="modal">
-                            <div class="row">
-                                <form class="col s12">
+                            <form class="col s12" method="post" action="<?php echo site_url('login/register'); ?>" name="formulario_registrar">
+                                <div class="row">                               
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input id="first_name" type="text" required pattern="^[a-zA-Z]{2,20}$">
-                                            <label for="first_name">Nombre</label>
+                                            <input id="nombre" type="text" required pattern="^[a-zA-Z]{2,20}$" value="5">
+                                            <label for="nombre">Nombre</label>
                                         </div>
                                         <div class="input-field col s6">
-                                            <input id="last_name" type="text" required>
-                                            <label for="last_name">Apellido</label>
+                                            <input id="apellido" type="text" required>
+                                            <label for="apellido">Apellido</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input id="username" type="text" required>
-                                            <label for="username">Nombre de Usuario</label>
+                                            <input id="usuario" type="text" required>
+                                            <label for="usuario">Nombre de Usuario</label>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -52,9 +52,12 @@
                                             <label for="email">Email</label>
                                         </div>
                                     </div>
-                                </form>                                        
-                            </div>
-                            <a href="#" class="waves-effect btn-flat modal-close">Entrar</a>
+                                    <div class="row">
+                                        <input type="submit" value="Enviar formulario">
+                                    </div> 
+
+                                </div>      
+                            </form>  
                         </div>
                         <!-- Fin Estructura del Modal-->
                     </div>    
