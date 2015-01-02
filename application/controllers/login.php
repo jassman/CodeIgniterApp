@@ -47,7 +47,7 @@ class Login extends CI_Controller {
         $user = array(
             'nombre' => filter_input(INPUT_POST, 'nombre'),
             'apellido' => filter_input(INPUT_POST, 'apellido'),
-            'login' => $this->input->post('login'),
+            'login' => $this->input->post('user'),
             'email' => $this->input->post('email'),
             'password' => $this->input->post('password')
                 
