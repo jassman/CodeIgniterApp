@@ -43,13 +43,19 @@ class Login extends CI_Controller {
 
     public function register() {
 
+        filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING);
         $user = array(
-            'nombre' => $this->input->post('nombre'),
-            'apellido' => $this->input->post('apellido'),
+            'nombre' => filter_input(INPUT_POST, 'nombre'),
+            'apellido' => filter_input(INPUT_POST, 'apellido'),
             'login' => $this->input->post('login'),
             'email' => $this->input->post('email'),
             'password' => $this->input->post('password')
+                
         );
+        
+        $name = filter_input(INPUT_POST, "email");
+        
+        $nobre = $this->input->post('nombre');
         if ($this->usuario_model->save($user)) {            
         $this->load->view('plantillas/plantilla', $this->data);
     }
