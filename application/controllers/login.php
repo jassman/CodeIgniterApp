@@ -37,7 +37,6 @@ class Login extends CI_Controller {
         } else {
             $this->data['login_error'] = 'Username not found';
         }
-
         $this->load->view('login/v_login', $this->data);
     }
 
@@ -53,9 +52,6 @@ class Login extends CI_Controller {
                 
         );
         
-        $name = filter_input(INPUT_POST, "email");
-        
-        $nobre = $this->input->post('nombre');
         if ($this->usuario_model->save($user)) {            
         $this->load->view('plantillas/plantilla', $this->data);
     }

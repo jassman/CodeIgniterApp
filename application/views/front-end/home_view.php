@@ -18,7 +18,7 @@
             <div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
                 <div class="row">
                     <div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
-                        <a class="waves-effect waves-light btn-large inicio modal-activar" href="#modal_registrar">Entrar</a>
+                        <a class="waves-effect waves-light btn-large inicio modal-activar" href="#modal_entrar">Entrar</a>
                         <a class="waves-effect waves-light btn-large inicio modal-activar" href="#modal_registrar">Registrarse</a>
                         <div id="modal_registrar" class="modal">
                             <form class="form-horizontal" method="post" action="<?php echo site_url('login/register'); ?>">
@@ -27,33 +27,52 @@
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="input-xlarge" id="nombre" name="nombre" required value="<?php echo set_value('nombre'); ?>">
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="input-field col s6">
                                         <label class="control-label" for="apellido">Apellido</label>
                                         <input type="text" class="input-xlarge" id="apellido" name="apellido" value="<?php echo set_value('apellido'); ?>">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s6">
+                                    <div class="input-field">
                                         <label class="control-label" for="user">Nombre Usuario</label>
                                         <input type="text" class="input-xlarge" id="user" name="user" value="<?php echo set_value('user'); ?>">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s6">
+                                    <div class="input-field">
                                         <label class="control-label" for="email">Contraseña</label>
                                         <input type="text" class="input-xlarge" id="password" name="password" value="<?php echo set_value('password'); ?>">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s6">
+                                    <div class="input-field">
                                         <label class="control-label" for="email">Email</label>
                                         <input type="text" class="input-xlarge" id="email" name="email" value="<?php echo set_value('email'); ?>">
                                     </div>
                                 </div>    	
                                 <div class="row">
-                                    <div class="input-field col s6">
+                                    <div class="input-field">
+                                        <input type="submit" value="Enviar formulario" id="enviar" name="enviar">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="modal_entrar" class="modal">
+                            <form class="form-horizontal" method="post" action="<?php echo site_url('login'); ?>">
+                                <div class="row">
+                                    <div class="input-field">
+                                        <label class="control-label" for="user">Nombre Usuario</label>
+                                        <input type="text" class="input-xlarge" id="user" name="user" value="<?php echo set_value('user'); ?>">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <label class="control-label" for="email">Contraseña</label>
+                                        <input type="text" class="input-xlarge" id="password" name="password" value="<?php echo set_value('password'); ?>">
+                                    </div>
+                                </div> 	
+                                <div class="row">
+                                    <div class="input-field">
                                         <input type="submit" value="Enviar formulario" id="enviar" name="enviar">
                                     </div>
                                 </div>
