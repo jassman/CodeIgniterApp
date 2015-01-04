@@ -21,7 +21,7 @@
                         <a class="waves-effect waves-light btn-large inicio modal-activar" href="#modal_entrar">Entrar</a>
                         <a class="waves-effect waves-light btn-large inicio modal-activar" href="#modal_registrar">Registrarse</a>
                         <div id="modal_registrar" class="modal">
-                            <form class="form-horizontal" method="post" action="<?php echo site_url('login/register'); ?>">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo site_url('login/register'); ?>">
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <label for="nombre">Nombre</label>
@@ -49,7 +49,13 @@
                                         <label class="control-label" for="email">Email</label>
                                         <input type="text" class="input-xlarge" id="email" name="email" value="<?php echo set_value('email'); ?>">
                                     </div>
-                                </div>    	
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <label class="control-label" for="foto">Foto</label>
+                                        <input type="file" class="input-xlarge" name="foto" value="<?php echo set_value('foto'); ?>">
+                                    </div>
+                                </div>                                 
                                 <div class="row">
                                     <div class="input-field">
                                         <input type="submit" value="Enviar formulario" id="enviar" name="enviar">

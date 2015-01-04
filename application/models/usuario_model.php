@@ -19,6 +19,29 @@ class Usuario_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
+    
+    public function add_user($image){
+        
+        $code = rand(1000,99999);
+        $user = array(
+            'nombre' => filter_input(INPUT_POST, 'nombre'),
+            'apellido' => filter_input(INPUT_POST, 'apellido'),
+            'login' => $this->input->post('user'),
+            'email' => $this->input->post('email'),
+            'password' => $this->input->post('password'),
+            'codigo' => $code,
+            'estado' => 0,
+            'nivel' => 'registrado',
+            'foto' => $image,
+            'fecha_creacion' => date('Y-m-d H:i:s')
+        );
+        
+        $this->db->insert($this->table, $user);   
+        
+        
+    }
+            
+    
 
     function save($user_data) {
         $this->db->insert($this->table, $user_data);
@@ -117,5 +140,9 @@ class Usuario_model extends CI_Model {
         }
         return $salt;
     }
+    
+    
+    
+    
 
 }
