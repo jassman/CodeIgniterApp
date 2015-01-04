@@ -19,10 +19,10 @@ class Usuario_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-    
-    public function add_user($image){
-        
-        $code = rand(1000,99999);
+
+    public function add_user($image) {
+
+        $code = rand(1000, 99999);
         $user = array(
             'nombre' => filter_input(INPUT_POST, 'nombre'),
             'apellido' => filter_input(INPUT_POST, 'apellido'),
@@ -35,13 +35,40 @@ class Usuario_model extends CI_Model {
             'foto' => $image,
             'fecha_creacion' => date('Y-m-d H:i:s')
         );
-        
-        $this->db->insert($this->table, $user);   
-        
-        
+
+        $this->db->insert($this->table, $user);
+        $this->send_email();
+ 
     }
-            
     
+    function send_email (){
+        
+        $this->load->library('email');
+
+        $config['charset'] = 'utf-8';
+        $config['newline'] = "\r\n";
+        $config['mailtype'] = 'html';
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        $config['smtp_port'] = 465;
+        $config['smtp_user'] = 'parkeasing@gmail.com';
+        $config['smtp_pass'] = 'metralla';
+        $config['validation'] = TRUE;
+        
+        $this->email->initialize($config);
+        $this->email->clear();
+        
+        $this->email->from('parkeasing@gmail.com','Parkeasy Company');
+        $this->email->to($this->input->post('email'));
+        
+        $this->email->subject('Confirme la Cuenta de Usuario de PARKEASY');
+        $this->email->message('<h1>Bienvenido: '.$this->input->post('nombre').' '.$this->input->post('apellido').'</h1>'
+                . '<p>Para confirmar su registro apriete el siguiente enlace:'
+                . '<a href="'.  base_url().'login/confirmar/'.$code.'">Enlace de confirmacion</a></p>'
+                . '<h3>Gracias por registrarte</h3>');
+        
+        $this->email->send();
+    }
 
     function save($user_data) {
         $this->db->insert($this->table, $user_data);
@@ -128,7 +155,6 @@ class Usuario_model extends CI_Model {
 //        $hashed2 = $salt . '.' . md5($salt . $password);
 //        return ($hashed_password == $hashed2);
 //    }
-
     // create salt for password hashing
     private function generate_salt($length = 10) {
         $characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -140,9 +166,5 @@ class Usuario_model extends CI_Model {
         }
         return $salt;
     }
-    
-    
-    
-    
 
 }

@@ -27,7 +27,7 @@ class Login extends CI_Controller {
         $username = $this->input->post('login');
         $password = $this->input->post('password');
 
-        if ($user = $this->usuario_model->get_by_username($username)) {
+        if ($user == $this->usuario_model->get_by_username($username)) {
             if ($this->usuario_model->check_password($password, $user['password'])) {
                 $this->usuario_model->allow_pass($user);
                 redirect('admin');
@@ -45,13 +45,13 @@ class Login extends CI_Controller {
         
         if($_FILES['foto']['name'] !=''){
             $respuesta = $this->upload_image();
-            print_r($respuesta);
-            if(!is_array($respuesta)){
+            if(!is_array($respuesta)){ //Si no es un array es que la imagen es correcta
                 $this->usuario_model->add_user($respuesta);
-                $mensaje = "El usuario de registro correctamente";
+                $mensaje = "El usuario de registro correctamente";              
             }
-            
-        }     
+            redirect('home');           
+        }
+         
         
 //        $user = array(
 //            'nombre' => filter_input(INPUT_POST, 'nombre'),
@@ -67,6 +67,21 @@ class Login extends CI_Controller {
     
     }
 
+    
+    public function confirmar($code) {
+        
+        $verificacion = $this->usuario_model->is_code($code, 'codigo');
+        if ($verificacion == false){
+            echo "Este Usuario No Existe";
+        } else {
+            $this->usuario_model->update_user($code);
+            echo "Usuario Confirmado Con Exito.<br>"
+            . "<a href='".base_url()."login'>Iniciar Sesion</a>";
+        }
+        
+    }
+    
+    
     // route /logout -- check settings in /application/config/routes.php
     public function logout() {
         $this->m_user->remove_pass();
@@ -118,5 +133,7 @@ class Login extends CI_Controller {
         $this->load->library('image_lib', $config);
         $this->image_lib->resize();
     }
+    
+    
 
 }
