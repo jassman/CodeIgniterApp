@@ -37,12 +37,11 @@ class Usuario_model extends CI_Model {
         );
 
         $this->db->insert($this->table, $user);
-        $this->send_email();
- 
+        $this->send_email($code);
     }
-    
-    function send_email (){
-        
+
+    function send_email($code) {
+
         $this->load->library('email');
 
         $config['charset'] = 'utf-8';
@@ -54,20 +53,63 @@ class Usuario_model extends CI_Model {
         $config['smtp_user'] = 'parkeasing@gmail.com';
         $config['smtp_pass'] = 'metralla';
         $config['validation'] = TRUE;
-        
+
         $this->email->initialize($config);
         $this->email->clear();
-        
-        $this->email->from('parkeasing@gmail.com','Parkeasy Company');
+
+        $this->email->from('parkeasing@gmail.com', 'Parkeasy Company');
         $this->email->to($this->input->post('email'));
-        
+
         $this->email->subject('Confirme la Cuenta de Usuario de PARKEASY');
-        $this->email->message('<h1>Bienvenido: '.$this->input->post('nombre').' '.$this->input->post('apellido').'</h1>'
+        $this->email->message('<h1>Bienvenido: ' . $this->input->post('nombre') . ' ' . $this->input->post('apellido') . '</h1>'
                 . '<p>Para confirmar su registro apriete el siguiente enlace:'
-                . '<a href="'.  base_url().'login/confirmar/'.$code.'">Enlace de confirmacion</a></p>'
+                . '<a href="' . base_url() . 'login/confirmar/' . $code . '">Enlace de confirmacion</a></p>'
                 . '<h3>Gracias por registrarte</h3>');
-        
+
         $this->email->send();
+    }
+
+    function is_code($valor, $columna) {
+        $query = $this->db->get_where('usuario', array($columna, $valor));
+        if ($query->num_rows() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function is_valid_user($login, $pass) {
+        $valores = array(
+            'login' => $login,
+            'password' => $pass);
+
+        $query = $this->db->get_where('usuario', $valores);
+        if ($query->num_rows() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function is_active($login, $pass) {
+
+        $valores = array(
+            'login' => $login,
+            'password' => $pass,
+            'estado' => '1');
+
+        $query = $this->db->get_where('usuario', $valores);
+
+        if ($query->num_rows() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function update_estado_user($code) {
+        $this->db->where('codigo', $code);
+        $this->db->where('usuario', array('estado' => '1'));
     }
 
     function save($user_data) {

@@ -14,6 +14,21 @@
         </section>
         <!-- Fin Texto Portada -->
         <!-- Contenedor de botones + Modal -->
+        <section>
+            <div class="row">
+                <div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
+                    <?php if (isset($mensaje)):?>
+                    <?php if (is_array($mensaje)):?>
+                    <?php foreach ($mensaje as $var):?>
+                    <?php echo "<p>".$var."</p>";?>
+                    <?php endforeach;?>
+                    <?php else:?>
+                    <?php echo "<p>".$mensaje."</p>";?>
+                    <?php endif;?>
+                    <?php endif;?>
+                </div>    
+            </div>
+        </section>    
         <section class="row contenedor-botones-inicio">
             <div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
                 <div class="row">
@@ -67,14 +82,14 @@
                             <form class="form-horizontal" method="post" action="<?php echo site_url('login'); ?>">
                                 <div class="row">
                                     <div class="input-field">
-                                        <label class="control-label" for="user">Nombre Usuario</label>
-                                        <input type="text" class="input-xlarge" id="user" name="user" value="<?php echo set_value('user'); ?>">
+                                        <label class="control-label" for="login">Nombre Usuario</label>
+                                        <input type="text" class="input-xlarge" id="login" name="login" value="<?php echo set_value('login'); ?>">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field">
-                                        <label class="control-label" for="email">Contraseña</label>
-                                        <input type="text" class="input-xlarge" id="password" name="password" value="<?php echo set_value('password'); ?>">
+                                        <label class="control-label" for="password">Contraseña</label>
+                                        <input type="password" class="input-xlarge" id="password" name="password" value="<?php echo set_value('password'); ?>">
                                     </div>
                                 </div> 	
                                 <div class="row">

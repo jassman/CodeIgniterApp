@@ -24,20 +24,39 @@ class Login extends CI_Controller {
     }
 
     public function index() {
+        
         $username = $this->input->post('login');
         $password = $this->input->post('password');
-
-        if ($user == $this->usuario_model->get_by_username($username)) {
-            if ($this->usuario_model->check_password($password, $user['password'])) {
-                $this->usuario_model->allow_pass($user);
-                redirect('admin');
+        
+        $valid_login = $this->usuario_model->is_valid_user($username,$password);
+        
+        if ($valid_login) {
+            $estado = $this->usuario_model->is_active($username,$password);
+            
+            if($estado) {
+                $data_session = array('usuario',$username);
+                $this->session->set_userdata($data_session);
+                redirect(base_url().'index.php/mapa');
             } else {
-                $this->data['login_error'] = 'Invalid username or password';
+                $data = array('mensaje' => 'El usuario no es activo, verifique el correo electronico');
+                $this->load->view('plantillas/home_view',$data);
             }
         } else {
-            $this->data['login_error'] = 'Username not found';
+            $data = array('mensaje' => 'El nombre de usuario o contraseña son incorrectos');
+            $this->load->view('plantillas/home_view',$data);
         }
-        $this->load->view('login/v_login', $this->data);
+
+//        if ($user == $this->usuario_model->get_by_username($username)) {
+//            if ($this->usuario_model->check_password($password, $user['password'])) {
+//                $this->usuario_model->allow_pass($user);
+//                redirect('admin');
+//            } else {
+//                $this->data['login_error'] = 'Invalid username or password';
+//            }
+//        } else {
+//            $this->data['login_error'] = 'Username not found';
+//        }
+//        $this->load->view('login/v_login', $this->data);
     }
 
     public function register() {
@@ -48,10 +67,16 @@ class Login extends CI_Controller {
             if(!is_array($respuesta)){ //Si no es un array es que la imagen es correcta
                 $this->usuario_model->add_user($respuesta);
                 $mensaje = "El usuario de registro correctamente";              
-            }
-            redirect('home');           
+            }else{
+                $mensaje = $respuesta;
+            }        
+        }else{
+            $this->usuario_model->add_user('anonimo.jpg');
+            $mensaje = "El usuario se registro correctamente";
         }
-         
+        
+        $data = array('mensaje'=>$mensaje);
+        $this->load->view('plantillas/home_view',$data);                    
         
 //        $user = array(
 //            'nombre' => filter_input(INPUT_POST, 'nombre'),
@@ -66,7 +91,6 @@ class Login extends CI_Controller {
 //    }
     
     }
-
     
     public function confirmar($code) {
         
@@ -74,7 +98,7 @@ class Login extends CI_Controller {
         if ($verificacion == false){
             echo "Este Usuario No Existe";
         } else {
-            $this->usuario_model->update_user($code);
+            $this->usuario_model->update_estado_user($code);
             echo "Usuario Confirmado Con Exito.<br>"
             . "<a href='".base_url()."login'>Iniciar Sesion</a>";
         }
