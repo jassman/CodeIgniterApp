@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <title>Parkeasy</title>
         <link href="<?php echo base_url(); ?>assets/css/materialize.css" rel="stylesheet" type="text/css"  media="screen,projection">
-        <link href="<?php echo base_url(); ?>assets/css/estilos.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url(); ?>assets/css/home_style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!-- Texto Portada -->

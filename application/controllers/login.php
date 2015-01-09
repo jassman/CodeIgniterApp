@@ -13,8 +13,6 @@
  */
 class Login extends CI_Controller {
 
-    // data for view, we do this so we can set value in __construct
-    // and pass to other functions if needed
     var $data = array();
 
     function __construct() {
@@ -34,11 +32,13 @@ class Login extends CI_Controller {
             $estado = $this->usuario_model->is_active($username,$password);
             
             if($estado) {
-                $data_session = array('usuario',$username);
+                $data_session = array('usuario'=>''.$username.'',
+                                        'pass'=>''.$password.'');
+                
                 $this->session->set_userdata($data_session);
                 redirect(base_url().'index.php/mapa');
             } else {
-                $data = array('mensaje' => 'El usuario no es activo, verifique el correo electronico');
+                $data = array('mensaje' => 'El usuario no esta activado, verifique el correo electronico');
                 $this->load->view('plantillas/home_view',$data);
             }
         } else {
@@ -61,35 +61,32 @@ class Login extends CI_Controller {
 
     public function register() {
 
+        $user = $this->input->post('user');
         
-        if($_FILES['foto']['name'] !=''){
-            $respuesta = $this->upload_image();
-            if(!is_array($respuesta)){ //Si no es un array es que la imagen es correcta
-                $this->usuario_model->add_user($respuesta);
-                $mensaje = "El usuario de registro correctamente";              
+        //Verificamos si el usuario ya existe
+        if (!$this->usuario_model->username_exists($user)){
+
+            //Verificamos si ha subido una foto
+            if($_FILES['foto']['name'] !=''){
+                $respuesta = $this->upload_image();
+                //Si no es un array es que la imagen es correcta
+                if(!is_array($respuesta)){ 
+                    $this->usuario_model->add_user($respuesta);
+                    $mensaje = "El usuario de registro correctamente";              
+                }else{
+                    $mensaje = $respuesta;
+                }        
             }else{
-                $mensaje = $respuesta;
-            }        
-        }else{
-            $this->usuario_model->add_user('anonimo.jpg');
-            $mensaje = "El usuario se registro correctamente";
+                $this->usuario_model->add_user('anonimo.jpg');
+                $mensaje = "El usuario se registro correctamente";
+            }
+            }else{
+                $mensaje = "El usuario ya existe";
         }
-        
+           
         $data = array('mensaje'=>$mensaje);
         $this->load->view('plantillas/home_view',$data);                    
         
-//        $user = array(
-//            'nombre' => filter_input(INPUT_POST, 'nombre'),
-//            'apellido' => filter_input(INPUT_POST, 'apellido'),
-//            'login' => $this->input->post('user'),
-//            'email' => $this->input->post('email'),
-//            'password' => $this->input->post('password')               
-//        );
-//        
-//        if ($this->usuario_model->save($user)) {            
-//        $this->load->view('plantillas/plantilla', $this->data);
-//    }
-    
     }
     
     public function confirmar($code) {
@@ -127,7 +124,7 @@ class Login extends CI_Controller {
         $config['max_size'] = 2*1024;
         $config['max_width'] = '1024';
         $config['max_height'] = '1024';
-        $config['file_name'] = $this->input->post('nombre').$this->input->post('apellido');
+        $config['file_name'] = $this->input->post('login');
         $config['remove_spaces'] = TRUE;
         
         $this->load->library('upload', $config);
@@ -154,10 +151,8 @@ class Login extends CI_Controller {
         $config['width'] = 150;
         $config['height'] = 150;
         
-        $this->load->library('image_lib', $config);
+        $this->load->library('Image_lib', $config);
         $this->image_lib->resize();
     }
-    
-    
-
+   
 }

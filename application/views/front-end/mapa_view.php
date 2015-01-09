@@ -7,7 +7,7 @@
      google.maps.event.trigger(marker, 'click');
     }
     </script>
-    <section class="col s8">
+    <section class="col s8 mapa">
     <?=$map['js']?>
     <?=$map['html']?>
     <ul>

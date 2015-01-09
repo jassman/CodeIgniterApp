@@ -20,8 +20,8 @@
         <nav>
             <div class="nav-wrapper">
                 <ul id="nav-mobile" class="nav-bar left side-nav">
-                    <li><a class="waves-effect waves-teal" href="sass.html">Perfil</a></li>
-                    <li><a class="waves-effect waves-teal" href="components.html">Encuentra Sitio</a></li>
+                    <li><a class="waves-effect waves-teal" href="profile">Perfil</a></li>
+                    <li><a class="waves-effect waves-teal" href="mapa">Encuentra Sitio</a></li>
                     <li><a class="waves-effect waves-teal" href="javascript.html">Comunidad</a></li>
                 </ul>
             </div>

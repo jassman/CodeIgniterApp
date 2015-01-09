@@ -249,7 +249,7 @@ $config['encryption_key'] = 'hoal';
 //variables de sesion
 
 //Nombre de la variable
-$config['sess_cookie_name']		= 'ci_session';
+$config['sess_cookie_name']		= 'sesion';
 //Teimpo de expiracion
 $config['sess_expiration']		= 7200;
 //Se expira al cerrar navegador?
@@ -257,8 +257,8 @@ $config['sess_expire_on_close']	= FALSE;
 //Se encripta¿
 $config['sess_encrypt_cookie']	= FALSE;
 //Usa Base de datos?
-$config['sess_use_database']	= FALSE;
-$config['sess_table_name']		= 'ci_sessions';
+$config['sess_use_database']	= TRUE;
+$config['sess_table_name']		= 'sesion';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;

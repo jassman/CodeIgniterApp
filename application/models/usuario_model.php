@@ -20,9 +20,11 @@ class Usuario_model extends CI_Model {
         parent::__construct();
     }
 
+    //Se ejecuta cuando nos registramos
     public function add_user($image) {
 
         $code = rand(1000, 99999);
+        $code = $code.$this->input->post('user');
         $user = array(
             'nombre' => filter_input(INPUT_POST, 'nombre'),
             'apellido' => filter_input(INPUT_POST, 'apellido'),
@@ -40,6 +42,7 @@ class Usuario_model extends CI_Model {
         $this->send_email($code);
     }
 
+    //envia un email de confirmacion
     function send_email($code) {
 
         $this->load->library('email');
@@ -48,9 +51,9 @@ class Usuario_model extends CI_Model {
         $config['newline'] = "\r\n";
         $config['mailtype'] = 'html';
         $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
-        $config['smtp_port'] = 465;
-        $config['smtp_user'] = 'parkeasing@gmail.com';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com' ; //'ssl://smtp.googlemail.com';
+        $config['smtp_port'] = 465;//465
+        $config['smtp_user'] = 'parkeasing';
         $config['smtp_pass'] = 'metralla';
         $config['validation'] = TRUE;
 
@@ -69,6 +72,7 @@ class Usuario_model extends CI_Model {
         $this->email->send();
     }
 
+    //verifica si el codigo es correcto
     function is_code($valor, $columna) {
         $query = $this->db->get_where('usuario', array($columna, $valor));
         if ($query->num_rows() == 1) {
@@ -78,6 +82,7 @@ class Usuario_model extends CI_Model {
         }
     }
 
+    //Verifica si el usuario es valido
     function is_valid_user($login, $pass) {
         $valores = array(
             'login' => $login,
@@ -91,6 +96,7 @@ class Usuario_model extends CI_Model {
         }
     }
 
+    //Verifica si el usuario esta activo(confimado correo)
     function is_active($login, $pass) {
 
         $valores = array(
@@ -107,6 +113,7 @@ class Usuario_model extends CI_Model {
         }
     }
 
+    //Cambia el usuario a activo 
     function update_estado_user($code) {
         $this->db->where('codigo', $code);
         $this->db->where('usuario', array('estado' => '1'));
@@ -114,7 +121,7 @@ class Usuario_model extends CI_Model {
 
     function save($user_data) {
         $this->db->insert($this->table, $user_data);
-        return $this->db->insert_id();
+        return $this->db->insert();
     }
 
     // Update an existing user
@@ -127,7 +134,7 @@ class Usuario_model extends CI_Model {
         return false;
     }
 
-    // get user by username
+    // Devuelve el usuario segun su login
     function get_by_username($username) {
         $query = $this->db->get_where($this->table, array('login' => $username), 1);
         if ($query->num_rows() > 0)
@@ -135,12 +142,12 @@ class Usuario_model extends CI_Model {
         return false;
     }
 
-    // set login session
+    //Mete el login en session
     function allow_pass($user_data) {
         $this->session->set_userdata(array('last_activity' => time(), 'logged_in' => 'yes', 'user' => $user_data));
     }
 
-    // Check if user is logged in and update session
+    //chequea si esta logeado
     function is_logged_in() {
         $last_activity = $this->session->userdata('last_activity');
         $logged_in = $this->session->userdata('logged_in');
@@ -155,13 +162,13 @@ class Usuario_model extends CI_Model {
         }
     }
 
-    // remove pass
+    //Borra todos los datos de sesion de usurario
     function remove_pass() {
         $array_items = array('last_activity' => '', 'logged_in' => '', 'user' => '');
         $this->session->unset_userdata($array_items);
     }
 
-    // get user by id
+    //Usuario por id
     function get_by_id($id) {
         $query = $this->db->get_where($this->table, array('id' => $id), 1);
         if ($query->num_rows() > 0)
@@ -169,17 +176,19 @@ class Usuario_model extends CI_Model {
         return false;
     }
 
-    // Check if email address already exists
+    //Verifica que el email existe
     function email_exists($email) {
         $query = $this->db->get_where($this->table, array('email' => $email), 1);
-        if ($query->num_rows() > 0)
-            return true;
+        if ($query->num_rows() > 0){
+        return true;
+        }else{
         return false;
+    }
     }
 
     // Check if username already exists
     function username_exists($username) {
-        $query = $this->db->get_where($this->table, array('username' => $username), 1);
+        $query = $this->db->get_where($this->table, array('login' => $username), 1);
         if ($query->num_rows() > 0)
             return true;
         return false;
