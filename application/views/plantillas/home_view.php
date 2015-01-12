@@ -56,7 +56,7 @@
                                 <div class="row">
                                     <div class="input-field">
                                         <label class="control-label" for="email">Contraseña</label>
-                                        <input type="text" class="input-xlarge" id="password" name="password" value="<?php echo set_value('password'); ?>">
+                                        <input type="password" class="input-xlarge" id="password" name="password" value="">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -89,7 +89,7 @@
                                 <div class="row">
                                     <div class="input-field">
                                         <label class="control-label" for="password">Contraseña</label>
-                                        <input type="password" class="input-xlarge" id="password" name="password" value="<?php echo set_value('password'); ?>">
+                                        <input type="password" class="input-xlarge" id="password" name="password" value="">
                                     </div>
                                 </div> 	
                                 <div class="row">

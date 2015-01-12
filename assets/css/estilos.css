@@ -6,23 +6,22 @@ body{
     margin-left: 10%;
 }
 
-nav{
+.barra-menu {
     background-color: #7986CB;
     margin-bottom: 10px;
+    padding-left: 20%;
 }
 
-.nav-bar{
-    margin-left: 20%;
-}
 
-/*CONTENIDO - (SIDEBAR Y CONTENIDOS) */
+/*CONTENIDO GENERAL - (SIDEBAR Y CONTENIDOS) */
 
 .contenido{
     height: 800px;
     background-color: red;
+    margin-top: 10px;
 }    
 
-/* FIN CONTENIDO - (SIDEBAR Y CONTENIDOS) */
+/* FIN CONTENIDO GENERAL - (SIDEBAR Y CONTENIDOS) */
 
 /*SIDEBAR - BARRA LATERAL*/
 
