@@ -119,6 +119,7 @@ class Usuario_model extends CI_Model {
         $this->db->where('usuario', array('estado' => '1'));
     }
 
+    //Guarda un usuario
     function save($user_data) {
         $this->db->insert($this->table, $user_data);
         return $this->db->insert();
@@ -186,7 +187,7 @@ class Usuario_model extends CI_Model {
     }
     }
 
-    // Check if username already exists
+    //Checkea si existe el usuario
     function username_exists($username) {
         $query = $this->db->get_where($this->table, array('login' => $username), 1);
         if ($query->num_rows() > 0)

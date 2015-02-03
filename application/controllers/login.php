@@ -45,18 +45,6 @@ class Login extends CI_Controller {
             $data = array('mensaje' => 'El nombre de usuario o contraseña son incorrectos');
             $this->load->view('plantillas/home_view',$data);
         }
-
-//        if ($user == $this->usuario_model->get_by_username($username)) {
-//            if ($this->usuario_model->check_password($password, $user['password'])) {
-//                $this->usuario_model->allow_pass($user);
-//                redirect('admin');
-//            } else {
-//                $this->data['login_error'] = 'Invalid username or password';
-//            }
-//        } else {
-//            $this->data['login_error'] = 'Username not found';
-//        }
-//        $this->load->view('login/v_login', $this->data);
     }
 
     public function register() {
@@ -101,13 +89,14 @@ class Login extends CI_Controller {
         }
         
     }
-    
-    
     // route /logout -- check settings in /application/config/routes.php
     public function logout() {
-        $this->m_user->remove_pass();
-        $this->data['login_success'] = 'You have been logged out. Thank you.';
-        $this->load->view('front-end/home_view', $this->data);
+        // Destroy session data
+        $this->session->sess_destroy();
+        $mensaje = "Has salido del sistema";
+        $data = array('mensaje'=>$mensaje);
+        $this->load->view('plantillas/home_view', $data);
+
     }
 
     // noaccess to show no access message

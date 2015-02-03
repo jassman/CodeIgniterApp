@@ -1,4 +1,4 @@
-    <aside class="col s12 m4 l3 sidebar">
+    <aside class="col s12 m4 l3 sidebar hide-on-med-and-down">
         <ul>
             <li>Menú Lateral 1</li>
             <li><a href="#">Submenu 1</a></li>

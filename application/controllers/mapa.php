@@ -25,11 +25,7 @@ class Mapa extends CI_Controller {
         //siempre mostrará todos los markers ajustando el zoom    
         $config['zoom'] = '6';        
         //el tipo de mapa, en el pdf podéis ver más opciones
-        $config['map_type'] = 'ROADMAP';
-        //el ancho del mapa        
-        $config['map_width'] = '700px';    
-        //el alto del mapa    
-        $config['map_height'] = '600px';    
+        $config['map_type'] = 'ROADMAP';  
         //inicializamos la configuración del mapa    
         $this->googlemaps->initialize($config);    
         
@@ -61,7 +57,7 @@ class Mapa extends CI_Controller {
         //poder utilizarlo en el sidebar en nuestra vista mapa_view
         $data = $this->mapa_model->get_markers();
         //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
-        $map = $this->googlemaps->create_map();             
+        $map = $this->googlemaps->create_map(); 
         
         $datos['contenido'] = "mapa_view";
         $datos['datos'] = $data;
