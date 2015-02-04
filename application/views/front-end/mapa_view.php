@@ -1,5 +1,7 @@
 
-<script type="text/javascript">
+     <main class="row">
+      <div class="col m12">
+                <script type="text/javascript">
     function datos_marker(lat, lng, marker)
     {
         var mi_marker = new google.maps.LatLng(lat, lng);
@@ -7,7 +9,7 @@
         google.maps.event.trigger(marker, 'click');
     }
 </script>
-<section class="col s12">
+<section>
     <div class="mapa">
         <?= $map['js'] ?>
         <?= $map['html'] ?>
@@ -22,5 +24,7 @@
     </div>
     <div style="width:300px;height:300px;" class="mapYou"></div>
     <p><span class="you">Where are you?</span></p>
-    
 </section>
+      </div>
+    </main>
+  </div>

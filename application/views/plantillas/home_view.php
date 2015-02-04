@@ -6,14 +6,11 @@
         <link href="<?php echo base_url(); ?>assets/css/home_style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <!-- Texto Portada -->
         <section class="row portada-inicio">
             <div class="col s8">
                 <h1>PARKEASY</h1>
             </div>            
         </section>
-        <!-- Fin Texto Portada -->
-        <!-- Contenedor de botones + Modal -->
         <section>
             <div class="row">
                 <div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
@@ -101,15 +98,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin Estructura del Modal-->
             </div>    
         </section>
-        <!-- Fin Contenedor de botones -->
-        <!-- Librerias JS -->
+
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript"  src="<?php echo base_url(); ?>assets/js/materialize.js"></script> 
-        <!-- Librerias JS -->
-        <!-- Scripts necesarios -->
         <script>
 
             $(document).ready(function() {
@@ -125,6 +118,6 @@
 
 
         </script>
-        <!-- Fin Scripts necesarios -->
     </body>
 </html>    
+

@@ -1,3 +1,6 @@
+
+     <main class="row">
+      <div class="col m12">
 <section class="col s12 m8 l9 profile">
 
     <div class="row">
@@ -16,5 +19,7 @@
 
     <?php
     ?>
-
 </section>
+      </div>
+      </main>
+

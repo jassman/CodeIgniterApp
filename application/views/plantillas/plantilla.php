@@ -7,6 +7,5 @@
  */
 
       $this->load->view('plantillas/front-end/header');
-      $this->load->view('plantillas/front-end/sidebar');
       $this->load->view('front-end/'.$contenido);        
       $this->load->view('plantillas/front-end/footer');
